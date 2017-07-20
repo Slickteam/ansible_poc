@@ -1,0 +1,4 @@
+- name: ensure mariadb is at the latest version
+  package: name=mariadb state=latest
+- name: ensure mariadb is running (and enable it at boot)
+  service: name=mariadb state=started enabled=yes

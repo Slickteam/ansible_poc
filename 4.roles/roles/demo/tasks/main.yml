@@ -1,0 +1,12 @@
+- name: clone symfony demo, and keep it updated
+  git:
+    repo: 'https://github.com/symfony/symfony-demo'
+    dest: /var/www/demo
+    version: v1.0.4
+- name: write symfony config file
+  template: src=templates/parameters.yml.j2 dest=/var/www/demo/app/config/parameter.yml
+- name: ensure all dependencies all satisfied using composer
+  composer:
+    command: install
+    working_dir: /var/www/demo
+    no_dev: false

@@ -1,0 +1,6 @@
+parameters:
+    locale: en
+    env(SYMFONY_SECRET): secret_value_for_symfony_demo_application
+    env(LOG_URL): '%kernel.logs_dir%/%kernel.environment%.log'
+    env(DATABASE_URL): 'mysql://{{ database_user }}:{{ database_password }}@127.0.0.1:3306/symfony_demo'
+    env(MAILER_URL): 'smtp://localhost:25?encryption=&auth_mode='
