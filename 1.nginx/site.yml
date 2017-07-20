@@ -1,0 +1,18 @@
+---
+- hosts: all
+  vars:
+    http_port: 80
+    server_name: localhost
+  remote_user: root
+  tasks:
+  - name: ensure nginx is at the latest version
+    package: name=nginx state=latest
+  - name: write the apache config file
+    template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+    notify:
+    - restart nginx
+  - name: ensure nginx is running (and enable it at boot)
+    service: name=nginx state=started enabled=yes
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
